@@ -14,6 +14,7 @@ public class SwerveMod {
 
     private final TalonSRX mAngleMotor;
     private final TalonSRX mDriveMotor;
+    public int kTimeoutMs = 30;
 
     private boolean driveInverted = false;
 
@@ -27,13 +28,18 @@ public class SwerveMod {
         angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
         angleMotor.setSelectedSensorPosition(0);
         angleMotor.setSensorPhase(false);
-        angleMotor.config_kP(0, 2, 0);
-        angleMotor.config_kI(0, 0.01, 0);
-        angleMotor.config_kD(0, 0.0, 0);
+        angleMotor.config_kP(0, 20, 0);
+        angleMotor.config_kI(0, 0.001, 0);
+        angleMotor.config_kD(0, 130, 0);
         angleMotor.setNeutralMode(NeutralMode.Brake);
         angleMotor.set(ControlMode.Position, 0);
         angleMotor.configMotionCruiseVelocity(1000, 0);
         angleMotor.configMotionAcceleration(2400, 0);
+
+        angleMotor.configNominalOutputForward(0, kTimeoutMs);
+        angleMotor.configNominalOutputReverse(0, kTimeoutMs);
+        angleMotor.configPeakOutputForward(1, kTimeoutMs);
+        angleMotor.configPeakOutputReverse(-1, kTimeoutMs);
 
         driveMotor.setNeutralMode(NeutralMode.Brake);
 
