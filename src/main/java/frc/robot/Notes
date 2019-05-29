@@ -1,3 +1,0 @@
-Drivetrain and holo drivetrain both had length and width. I got rid of them
-There was like 3 different drivetrains that swerve would inherit all the way through; got rid of that
-Changed Swerve Mod from a subsystem to just a class;
