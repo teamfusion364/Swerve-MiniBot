@@ -1,3 +1,70 @@
-Drivetrain and holo drivetrain both had length and width. I got rid of them
-There was like 3 different drivetrains that swerve would inherit all the way through; got rid of that
-Changed Swerve Mod from a subsystem to just a class;
+Drivetrain and holo drivetrain both had length and width. I got rid of them(I plan to reitegrate, although the minibogt would
+    have congruent porportions which means both ratios would be 1. It will be in there for adapting other robots
+    to the same code.)
+There were like 3 different drivetrains that swerve would inherit all the way through; got rid of that(Seems to be no issues with this)
+Changed Swerve Mod from a subsystem to just a class;(Seems to be no issues with this)
+After adding a timeout and configing the max and nomial speeds for the angle motor, overrun loops appeared(Try lowering the timeout).
+It seems that the swerveMod no longer overshoots the target and enters an infinite turn. Further testing must confirm this.
+
+
+Next:
+
+    Make a method for the conversion from degrees to counts and counts to degrees
+
+    Try using mSwerveModules.length instead of putting the number of modules in for the for loops
+    so that iteration is a bit smarter and adaptive
+
+    Put the axis into OI
+
+    Get rid of folders for commands and subsystems
+
+    Make a gyro class to initialize and access the gyro from
+
+    Make a getRawError for the swerve mod and then an error in degrees(TWO seperate methods)
+
+    Make the modulus of 360 into a method so that the code reads easier
+
+    Make the threshold for the sticks into a static variable stored in a RobotMap(I see it used in added
+    few places and changing it in one without the other could create issues)
+
+    Add trackwidth and width in constants for robot map and then integrate them back into the swerve calculations
+
+    The offset must be figured out:
+        what is it used for?
+        how does the current module need to be offset?
+        what are the wheels supposed to do?
+        ---
+        TRY: Because the swerve Mods are set to zero when they are initialized, just read the position of each module After
+        startup and use that as the offset after it is converted to degrees
+
+Further future:
+    Retain Angle:
+            HOW???
+                Offseting gyro would lead to the Forward on the stick not being forward to the driver(IDEA OUT)
+                Offset Angles and then remove offset once returning to normal?(NEEDS TESTING)
+
+Questions:
+    Why is 180 degrees added whenever the sticks are used?
+        Is it defense or compensation for bad math?
+
+    I see that previous error and previous position are stored, but is anything done with these values?
+        Are they necessary?
+        They seem useful for some other function that the simple drive lacks
+        TEST
+    
+Expectations:
+    Once the offsets are properly defined, the robot will start with all wheels facing the same direction
+
+    Forward will make the robot go Forward in relation to where the gyro is zeroed; backward, backward
+
+    Left will make the robot strafe Left; right, right
+
+    Turn will zero point turn the robot as if the robot is in tank configuration
+
+Colton and Damion:
+
+    Notice the use of static RobotMap in the SwerveSubsystem. Using that removes typing of RobotMap. over and over
+    --It is a nice trick^
+
+    Notice that the for-loops are used to iterate through the swerve modules. They are grouped into an array
+    and handled one by one in less lines of code than it would take to do this individually

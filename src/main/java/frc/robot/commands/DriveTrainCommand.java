@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.subsystems.SwerveSubsystem;
 
+//import static frc.robot.RobotMap.*; TODO: add this to access the deadband
 public class DriveTrainCommand extends Command {
 
 	private final SwerveSubsystem mDrivetrain;
@@ -15,7 +16,7 @@ public class DriveTrainCommand extends Command {
 	}
 
 	private double deadband(double input) {
-		if (Math.abs(input) < 0.05) return 0;
+		if (Math.abs(input) < 0.05) return 0;//TODO: Change this to the constant 
 		return input;
 	}
 

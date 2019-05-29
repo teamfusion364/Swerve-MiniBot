@@ -14,7 +14,8 @@ public class SwerveMod {
 
     private final TalonSRX mAngleMotor;
     private final TalonSRX mDriveMotor;
-    public int kTimeoutMs = 30;
+    
+    public int kTimeoutMs = 30;//Try reducing TODO: Make into constant
 
     private boolean driveInverted = false;
 
@@ -25,6 +26,7 @@ public class SwerveMod {
         mDriveMotor = driveMotor;
         mZeroOffset = zeroOffset;
 
+        //TODO: Change all these into constants
         angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
         angleMotor.setSelectedSensorPosition(0);
         angleMotor.setSensorPhase(false);

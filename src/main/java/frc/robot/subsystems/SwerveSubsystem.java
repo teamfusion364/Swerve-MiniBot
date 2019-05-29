@@ -21,7 +21,6 @@ public class SwerveSubsystem extends Subsystem {
     private SwerveMod[] mSwerveModules;
     
     public SwerveSubsystem() {
-        // super(WIDTH, LENGTH);
             mSwerveModules = new SwerveMod[] {
                     new SwerveMod(0,
                             new TalonSRX(rTopAngle),
@@ -48,14 +47,15 @@ public class SwerveSubsystem extends Subsystem {
         for (SwerveMod module : mSwerveModules) {
             module.setTargetAngle(0);
         }
-    }
+    }  
+    
 
     public double[] calculateSwerveModuleAngles(double forward, double strafe, double rotation) {
             double angleRad = Math.toRadians(Robot.getGyroAngle());
             double temp = forward * Math.cos(angleRad) + strafe * Math.sin(angleRad);
             strafe = -forward * Math.sin(angleRad) + strafe * Math.cos(angleRad);
             forward = temp;
-
+    
         double a = strafe - rotation;//w/t
         double b = strafe + rotation;//w/t
         double c = forward - rotation;//t/w
@@ -111,10 +111,10 @@ public class SwerveSubsystem extends Subsystem {
         }
 
         for (int i = 0; i < 1; i++) {//was 4
-            if (Math.abs(forward) > 0.05 ||
-                    Math.abs(strafe) > 0.05 ||
-                    Math.abs(rotation) > 0.05) {
-                mSwerveModules[i].setTargetAngle(angles[i] + 180);
+            if (Math.abs(forward) > 0.05 || //TODO: change to deadband constant
+                    Math.abs(strafe) > 0.05 ||//TODO: change to deadband constant
+                    Math.abs(rotation) > 0.05) {//TODO: change to deadband constant
+                mSwerveModules[i].setTargetAngle(angles[i] + 180);//TODO: Explain this(IT turns it around but why) This seems unecessary
             } else {
                 mSwerveModules[i].setTargetAngle(mSwerveModules[i].getTargetAngle());
             }
