@@ -1,11 +1,11 @@
-package frc.robot.commands;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.SwerveSubsystem;
 
-//import static frc.robot.RobotMap.*; TODO: add this to access the deadband
+import static frc.robot.RobotMap.*;
 public class DriveTrainCommand extends Command {
 
 	private final SwerveSubsystem mDrivetrain;
@@ -16,15 +16,15 @@ public class DriveTrainCommand extends Command {
 	}
 
 	private double deadband(double input) {
-		if (Math.abs(input) < 0.05) return 0;//TODO: Change this to the constant 
+		if (Math.abs(input) < stickDeadband) return 0;
 		return input;
 	}
 
 	@Override
 	protected void execute() {
-        double forward = -Robot.oi.cont.getRawAxis(1);
-		double strafe = Robot.oi.cont.getRawAxis(0);
-		double rotation = Robot.oi.cont.getRawAxis(4);
+        double forward = -Robot.oi.forward();
+		double strafe = Robot.oi.strafe();
+		double rotation = Robot.oi.rotation();
 
 		forward *= Math.abs(forward);
 		strafe *= Math.abs(strafe);

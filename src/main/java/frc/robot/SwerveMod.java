@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -6,16 +6,17 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SwerveMod {
-    private double mLastError = 0, lastTargetAngle = 0;
+import frc.robot.Conversions;
+import static frc.robot.RobotMap.*;
+
+public class SwerveMod extends Conversions{
+    private double lastTargetAngle = 0;
     private final int moduleNumber;
 
     private final double mZeroOffset;
 
     private final TalonSRX mAngleMotor;
     private final TalonSRX mDriveMotor;
-    
-    public int kTimeoutMs = 30;//Try reducing TODO: Make into constant
 
     private boolean driveInverted = false;
 
@@ -26,35 +27,34 @@ public class SwerveMod {
         mDriveMotor = driveMotor;
         mZeroOffset = zeroOffset;
 
-        //TODO: Change all these into constants
-        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, slotIDX, swerveModuleTimeout);
         angleMotor.setSelectedSensorPosition(0);
         angleMotor.setSensorPhase(false);
-        angleMotor.config_kP(0, 20, 0);
-        angleMotor.config_kI(0, 0.001, 0);
-        angleMotor.config_kD(0, 130, 0);
+        angleMotor.config_kP(slotIDX, angleP);
+        angleMotor.config_kI(slotIDX, angleI);
+        angleMotor.config_kD(slotIDX, angleD);
         angleMotor.setNeutralMode(NeutralMode.Brake);
         angleMotor.set(ControlMode.Position, 0);
-        angleMotor.configMotionCruiseVelocity(1000, 0);
-        angleMotor.configMotionAcceleration(2400, 0);
+        angleMotor.configMotionCruiseVelocity(angleVelocity, swerveModuleTimeout);
+        angleMotor.configMotionAcceleration(angleAcceleration, swerveModuleTimeout);
 
-        angleMotor.configNominalOutputForward(0, kTimeoutMs);
-        angleMotor.configNominalOutputReverse(0, kTimeoutMs);
-        angleMotor.configPeakOutputForward(1, kTimeoutMs);
-        angleMotor.configPeakOutputReverse(-1, kTimeoutMs);
+        angleMotor.configNominalOutputForward(angleNominalForward, swerveModuleTimeout);
+        angleMotor.configNominalOutputReverse(angleNominalReverse, swerveModuleTimeout);
+        angleMotor.configPeakOutputForward(anglePeakForward, swerveModuleTimeout);
+        angleMotor.configPeakOutputReverse(anglePeakReverse, swerveModuleTimeout);
 
         driveMotor.setNeutralMode(NeutralMode.Brake);
 
         // Set amperage limits
-        angleMotor.configContinuousCurrentLimit(30, 0);
-        angleMotor.configPeakCurrentLimit(30, 0);
-        angleMotor.configPeakCurrentDuration(100, 0);
-        angleMotor.enableCurrentLimit(true);
+        angleMotor.configContinuousCurrentLimit(angleContinuousCurrentLimit, swerveModuleTimeout);
+        angleMotor.configPeakCurrentLimit(anglePeakCurrent, swerveModuleTimeout);
+        angleMotor.configPeakCurrentDuration(anglePeakCurrentDuration, swerveModuleTimeout);
+        angleMotor.enableCurrentLimit(angleEnableCurrentLimit);
 
-        driveMotor.configContinuousCurrentLimit(25, 0);
-        driveMotor.configPeakCurrentLimit(25, 0);
-        driveMotor.configPeakCurrentDuration(100, 0);
-        driveMotor.enableCurrentLimit(true);
+        driveMotor.configContinuousCurrentLimit(driveContinuousCurrentLimit, swerveModuleTimeout);
+        driveMotor.configPeakCurrentLimit(drivePeakCurrent, swerveModuleTimeout);
+        driveMotor.configPeakCurrentDuration(drivePeakCurrentDuration, swerveModuleTimeout);
+        driveMotor.enableCurrentLimit(driveEnableCurrentLimit);
     }
 
     public TalonSRX getAngleMotor(){
@@ -62,9 +62,9 @@ public class SwerveMod {
     }
 
     public double getCurrentAngle(){
-        double angle = mAngleMotor.getSelectedSensorPosition(0) * (360.0 / 4096.0);
+        double angle = toDegrees(getPos());
         angle -= mZeroOffset;
-        angle %= 360;
+        angle = modulate360(angle);
         if (angle < 0) angle += 360;
         return angle;
     }
@@ -83,13 +83,13 @@ public class SwerveMod {
     }
 
     public void setTargetAngle(double targetAngle) {
-    	
+    
         lastTargetAngle = targetAngle;
-        targetAngle %= 360;
-        SmartDashboard.putNumber("Module Target Angle " + moduleNumber, targetAngle % 360);
+        targetAngle = modulate360(targetAngle);
+        SmartDashboard.putNumber("Module Target Angle " + moduleNumber, modulate360(targetAngle));
         targetAngle += mZeroOffset;
-        double currentAngle = mAngleMotor.getSelectedSensorPosition(0) * (360.0 / 4096.0);
-        double currentAngleMod = currentAngle % 360;
+        double currentAngle = toDegrees(getPos());
+        double currentAngleMod = modulate360(currentAngle);
 
         if (currentAngleMod < 0) currentAngleMod += 360;
         double delta = currentAngleMod - targetAngle;
@@ -112,9 +112,8 @@ public class SwerveMod {
 
         targetAngle += currentAngle - currentAngleMod;
 
-        double currentError = mAngleMotor.getClosedLoopError(0);
-        mLastError = currentError;
-        targetAngle *= 4096.0 / 360.0;
+        double currentError = getRawError();
+        targetAngle = toCounts(targetAngle);
         mAngleMotor.set(ControlMode.Position, targetAngle);
     }
 
@@ -123,7 +122,14 @@ public class SwerveMod {
         mDriveMotor.set(ControlMode.PercentOutput, speed);
     }
 
-    public double getError(){
+    public double getRawError(){
         return mAngleMotor.getClosedLoopError(0);
+    }
+    public double getAdjustedError(){
+        return toDegrees(getRawError());
+    }
+
+    public double getPos(){
+        return mAngleMotor.getSelectedSensorPosition(0);
     }
 }
