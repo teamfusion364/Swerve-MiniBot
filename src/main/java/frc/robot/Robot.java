@@ -4,19 +4,19 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
-import frc.robot.SwerveSubsystem;
+import frc.robot.Drivetrain;
 
 public class Robot extends TimedRobot {
 
   public static OI oi;
-  private static SwerveSubsystem swerveSubsystem;
+  private static Drivetrain drivetrain;
   public static Gyro gyro;
   public static double offset = 180;
 
 	public void robotInit() {
 
     gyro = new Gyro();
-    swerveSubsystem = new SwerveSubsystem();
+    drivetrain = new Drivetrain();
     oi = new OI();
 
 	}
@@ -28,11 +28,11 @@ public class Robot extends TimedRobot {
   }
 
   public void postSmartDashVars(){
-    SmartDashboard.putNumber("Gyro Angle modified", gyro.getAngle());
-    SmartDashboard.putNumber("Raw Pos", swerveSubsystem.getSwerveModule(0).getAngleMotor().getSelectedSensorPosition(0));
-    SmartDashboard.putNumber("Pos", swerveSubsystem.getSwerveModule(0).getCurrentAngle());
-    SmartDashboard.putNumber("Closed loop error Deg", swerveSubsystem.getSwerveModule(0).getAdjustedError());
-    SmartDashboard.putNumber("Hold Offset", offset);
+    // SmartDashboard.putNumber("Gyro Angle modified", gyro.getAngle());
+    // SmartDashboard.putNumber("Raw Pos", drivetrain.getSwerveModule(0).getAngleMotor().getSelectedSensorPosition(0));
+    // SmartDashboard.putNumber("Pos", drivetrain.getSwerveModule(0).getCurrentAngle());
+    // SmartDashboard.putNumber("Closed loop error Deg", drivetrain.getSwerveModule(0).getAdjustedError());
+    // SmartDashboard.putNumber("Hold Offset", offset);
   }
 
 

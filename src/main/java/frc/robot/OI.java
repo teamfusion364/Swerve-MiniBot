@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Hold;
 
 import static frc.robot.RobotMap.*;
@@ -9,6 +10,7 @@ import static frc.robot.RobotMap.*;
 public class OI{
 
     public Joystick cont;
+
     public JoystickButton aButton;
     public JoystickButton bButton;
     public JoystickButton xButton;
@@ -37,7 +39,6 @@ public class OI{
 
         rightBumper = new JoystickButton(cont, 6);
         rightBumper.whenPressed(new Hold(rightBumperAngle));
-        
     }
 
     /**

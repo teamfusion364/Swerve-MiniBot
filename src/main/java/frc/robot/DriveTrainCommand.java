@@ -3,14 +3,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.SwerveSubsystem;
+import frc.robot.Drivetrain;
 
 import static frc.robot.RobotMap.*;
-public class DriveTrainCommand extends Command {
+public class DrivetrainCommand extends Command {
 
-	private final SwerveSubsystem mDrivetrain;
+	private final Drivetrain mDrivetrain;
 
-	public DriveTrainCommand(SwerveSubsystem drivetrain) {
+	public DrivetrainCommand(Drivetrain drivetrain) {
 		mDrivetrain = drivetrain;
 		requires(drivetrain);
 	}

@@ -3,11 +3,11 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.DriveTrainCommand;
+import frc.robot.DrivetrainCommand;
 
 import static frc.robot.RobotMap.*;
 
-public class SwerveSubsystem extends Subsystem {
+public class Drivetrain extends Subsystem {
 
 	/*
 	 * 0 is Front Right
@@ -19,7 +19,7 @@ public class SwerveSubsystem extends Subsystem {
     private int w = wheelbase;
     private int t = trackwidth;
     
-    public SwerveSubsystem() {
+    public Drivetrain() {
             mSwerveModules = new SwerveMod[] {
                     new SwerveMod(0,
                             new TalonSRX(rTopAngle),
@@ -116,6 +116,6 @@ public class SwerveSubsystem extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new DriveTrainCommand(this));
+        setDefaultCommand(new DrivetrainCommand(this));
     }
 }
