@@ -6,6 +6,7 @@ import frc.robot.Robot;
 import frc.robot.Drivetrain;
 
 import static frc.robot.RobotMap.*;
+
 public class DrivetrainCommand extends Command {
 
 	private final Drivetrain mDrivetrain;
@@ -13,11 +14,6 @@ public class DrivetrainCommand extends Command {
 	public DrivetrainCommand(Drivetrain drivetrain) {
 		mDrivetrain = drivetrain;
 		requires(drivetrain);
-	}
-
-	private double deadband(double input) {
-		if (Math.abs(input) < stickDeadband) return 0;
-		return input;
 	}
 
 	@Override
@@ -39,6 +35,11 @@ public class DrivetrainCommand extends Command {
 		SmartDashboard.putNumber("Rotation", rotation);
 
 		mDrivetrain.holonomicDrive(forward, strafe, rotation);
+	}
+
+	private double deadband(double input) {
+		if (Math.abs(input) < stickDeadband) return 0;
+		return input;
 	}
 
 	@Override

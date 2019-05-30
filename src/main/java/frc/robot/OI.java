@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Hold;
 
@@ -17,20 +16,11 @@ public class OI{
     public double currentButton;
     public double temp;
 
-    public double[] angles = {
-            0,
-            aButtonAngle,
-            bButtonAngle,
-            xButtonAngle,
-            yButtonAngle,
-            leftBumperAngle,
-            rightBumperAngle};
-
-
     public OI(){
 
         cont = new Joystick(0);
         hold = new Hold(angle);
+        
     }
 
     public void controlloop(){

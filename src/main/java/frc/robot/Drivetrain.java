@@ -6,7 +6,7 @@ import frc.robot.Robot;
 import frc.robot.DrivetrainCommand;
 
 import static frc.robot.RobotMap.*;
-import frc.robot.OI;
+import static frc.robot.Robot.*;
 
 public class Drivetrain extends Subsystem {
 
@@ -100,7 +100,7 @@ public class Drivetrain extends Subsystem {
                     Math.abs(strafe) > stickDeadband ||
                     Math.abs(rotation) > stickDeadband ||
                     Robot.oi.hold.isRunning()) {
-                mSwerveModules[i].setTargetAngle(angles[i] + Robot.offset);
+                mSwerveModules[i].setTargetAngle(angles[i] + offset);
             } 
             mSwerveModules[i].setTargetSpeed(speeds[i]);
         }

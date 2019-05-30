@@ -17,6 +17,15 @@ public class RobotMap{
     public static final int yButtonAngle = -120;
     public static final int leftBumperAngle = -180;
     public static final int rightBumperAngle = 0;
+    
+    public static double[] angles = {
+        0,
+        aButtonAngle,
+        bButtonAngle,
+        xButtonAngle,
+        yButtonAngle,
+        leftBumperAngle,
+        rightBumperAngle};
 
     //constants
     public static final double stickDeadband = 0.05;

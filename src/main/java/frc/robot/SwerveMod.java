@@ -86,7 +86,7 @@ public class SwerveMod extends Conversions{
     
         lastTargetAngle = targetAngle;
         targetAngle = modulate360(targetAngle);
-        // SmartDashboard.putNumber("Module Target Angle " + moduleNumber, modulate360(targetAngle));
+        SmartDashboard.putNumber("Module Target Angle " + moduleNumber, modulate360(targetAngle));
         targetAngle += mZeroOffset;
         double currentAngle = toDegrees(getPos());
         double currentAngleMod = modulate360(currentAngle);
@@ -125,6 +125,7 @@ public class SwerveMod extends Conversions{
     public double getRawError(){
         return mAngleMotor.getClosedLoopError(0);
     }
+    
     public double getAdjustedError(){
         return toDegrees(getRawError());
     }

@@ -2,7 +2,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import static frc.robot.RobotMap.*;
-import frc.robot.Robot;
+import static frc.robot.Robot.*;
+
 public class Hold extends Command{
 
     private double angle;
@@ -11,6 +12,7 @@ public class Hold extends Command{
         this.angle = angle;
         setTimeout(0.02);
     }
+    
     @Override
     protected void initialize() {
         angle += offsetToStraight;
@@ -18,7 +20,7 @@ public class Hold extends Command{
 
     @Override
     protected void execute() {
-        Robot.offset = angle;
+        offset = angle;
     }
 
     @Override
