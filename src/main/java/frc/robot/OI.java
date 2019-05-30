@@ -11,34 +11,45 @@ public class OI{
 
     public Joystick cont;
 
-    public JoystickButton aButton;
-    public JoystickButton bButton;
-    public JoystickButton xButton;
-    public JoystickButton yButton;
-    public JoystickButton leftBumper;
-    public JoystickButton rightBumper;
+    public Command hold;
+    public double angle = 0;
+    public double previousButton = 0;
+    public double currentButton;
+    public double temp;
+
+    public double[] angles = {
+            0,
+            aButtonAngle,
+            bButtonAngle,
+            xButtonAngle,
+            yButtonAngle,
+            leftBumperAngle,
+            rightBumperAngle};
+
 
     public OI(){
 
         cont = new Joystick(0);
+        hold = new Hold(angle);
+    }
 
-        aButton = new JoystickButton(cont, 1);
-        aButton.whenPressed(new Hold(aButtonAngle));
-        
-        bButton = new JoystickButton(cont, 2);
-        bButton.whenPressed(new Hold(bButtonAngle));
+    public void controlloop(){
 
-        xButton = new JoystickButton(cont, 3);
-        xButton.whenPressed(new Hold(xButtonAngle));
+        for(int i = 1; i < 7; i++){
+            if(cont.getRawButton(i)){
+                currentButton = i;
+                if(currentButton != previousButton){
+                    angle = angles[i];
+                }
+                temp = i;
+            }
+        }
 
-        yButton = new JoystickButton(cont, 4);
-        yButton.whenPressed(new Hold(yButtonAngle));
-
-        leftBumper = new JoystickButton(cont, 5);
-        leftBumper.whenPressed(new Hold(leftBumperAngle));
-
-        rightBumper = new JoystickButton(cont, 6);
-        rightBumper.whenPressed(new Hold(rightBumperAngle));
+        if(currentButton != previousButton){
+            hold = new Hold(angle);
+            hold.start();
+        }
+        previousButton = temp;
     }
 
     /**

@@ -15,4 +15,5 @@ public class Conversions{
     public double modulate360(double units){
         return units %= 360;
     }
+    
 }

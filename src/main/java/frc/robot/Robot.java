@@ -11,20 +11,21 @@ public class Robot extends TimedRobot {
   public static OI oi;
   private static Drivetrain drivetrain;
   public static Gyro gyro;
-  public static double offset = 180;
+  public static double offset;
 
 	public void robotInit() {
 
+    oi = new OI();
     gyro = new Gyro();
     drivetrain = new Drivetrain();
-    oi = new OI();
-
+    offset = 180;
 	}
 
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     postSmartDashVars(); 
+    oi.controlloop();
   }
 
   public void postSmartDashVars(){
