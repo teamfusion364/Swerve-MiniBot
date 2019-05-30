@@ -13,7 +13,9 @@ public class RobotMap{
     //constants
     public static final double stickDeadband = 0.05;
     public static final double encoderTicks = 4096.0;
-    
+    public static final double offsetToStraight = 180;
+
+
     public static final int slotIDX = 0;
     public static final int swerveModuleTimeout = 0;
 

@@ -5,11 +5,13 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.SwerveSubsystem;
+
 public class Robot extends TimedRobot {
 
   public static OI oi;
   private static SwerveSubsystem swerveSubsystem;
   public static Gyro gyro;
+  public static double offset = 180;
 
 	public void robotInit() {
 
@@ -30,6 +32,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Raw Pos", swerveSubsystem.getSwerveModule(0).getAngleMotor().getSelectedSensorPosition(0));
     SmartDashboard.putNumber("Pos", swerveSubsystem.getSwerveModule(0).getCurrentAngle());
     SmartDashboard.putNumber("Closed loop error Deg", swerveSubsystem.getSwerveModule(0).getAdjustedError());
+    SmartDashboard.putNumber("Hold Offset", offset);
   }
 
 

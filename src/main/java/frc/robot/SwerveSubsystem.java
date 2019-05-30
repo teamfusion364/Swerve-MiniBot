@@ -98,10 +98,8 @@ public class SwerveSubsystem extends Subsystem {
             if (Math.abs(forward) > stickDeadband ||
                     Math.abs(strafe) > stickDeadband ||
                     Math.abs(rotation) > stickDeadband) {
-                mSwerveModules[i].setTargetAngle(angles[i] + 180);
-            } else {
-                mSwerveModules[i].setTargetAngle(mSwerveModules[i].getTargetAngle());
-            }
+                mSwerveModules[i].setTargetAngle(angles[i] + Robot.offset);
+            } 
             mSwerveModules[i].setTargetSpeed(speeds[i]);
         }
     }

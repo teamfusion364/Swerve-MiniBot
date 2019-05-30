@@ -1,21 +1,7 @@
 Further future:
         Offsets: Because the swerve Mods are set to zero when they are initialized, just read the position of each module After
         startup and use that as the offset after it is converted to degrees
-
-    Retain Angle:
-            HOW???
-                Offseting gyro would lead to the Forward on the stick not being forward to the driver(IDEA OUT)
-                Offset Angles and then remove offset once returning to normal?(NEEDS TESTING)
-
-Questions:
-    Why is 180 degrees added whenever the sticks are used?
-        Is it defense or compensation for bad math? -- can't test yet
-
-    I see that previous error and previous position are stored, but is anything done with these values?
-        Are they necessary?
-        They seem useful for some other function that the simple drive lacks
-        TEST
-    
+        
 Expectations:
     Once the offsets are properly defined, the robot will start with all wheels facing the same direction
 
