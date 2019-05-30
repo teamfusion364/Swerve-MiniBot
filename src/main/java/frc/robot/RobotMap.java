@@ -10,6 +10,14 @@ public class RobotMap{
     public static final int rTopDrive = 1;
     public static final int gyroTalon = 1;//In actual robot this will not be the same as rTopDrive
 
+    //Holds
+    public static final int aButtonAngle = 30;
+    public static final int bButtonAngle = -30;
+    public static final int xButtonAngle = 120;
+    public static final int yButtonAngle = -120;
+    public static final int leftBumperAngle = -180;
+    public static final int rightBumperAngle = 0;
+
     //constants
     public static final double stickDeadband = 0.05;
     public static final double encoderTicks = 4096.0;

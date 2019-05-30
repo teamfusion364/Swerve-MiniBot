@@ -4,37 +4,39 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Hold;
 
+import static frc.robot.RobotMap.*;
+
 public class OI{
 
     public Joystick cont;
-    public JoystickButton lock45right;
-    public JoystickButton lock45left;
-    public JoystickButton lock127right;
-    public JoystickButton lock37left;
-    public JoystickButton lock0;
-    public JoystickButton lock180;
+    public JoystickButton aButton;
+    public JoystickButton bButton;
+    public JoystickButton xButton;
+    public JoystickButton yButton;
+    public JoystickButton leftBumper;
+    public JoystickButton rightBumper;
 
     public OI(){
 
         cont = new Joystick(0);
 
-        lock45right = new JoystickButton(cont, 1);
-        lock45right.whenPressed(new Hold(45));
+        aButton = new JoystickButton(cont, 1);
+        aButton.whenPressed(new Hold(aButtonAngle));
         
-        lock45left = new JoystickButton(cont, 2);
-        lock45left.whenPressed(new Hold(-45));
+        bButton = new JoystickButton(cont, 2);
+        bButton.whenPressed(new Hold(bButtonAngle));
 
-        lock127right = new JoystickButton(cont, 3);
-        lock127right.whenPressed(new Hold(127));
+        xButton = new JoystickButton(cont, 3);
+        xButton.whenPressed(new Hold(xButtonAngle));
 
-        lock37left = new JoystickButton(cont, 4);
-        lock37left.whenPressed(new Hold(-37));
+        yButton = new JoystickButton(cont, 4);
+        yButton.whenPressed(new Hold(yButtonAngle));
 
-        lock0 = new JoystickButton(cont, 5);
-        lock0.whenPressed(new Hold(0));
+        leftBumper = new JoystickButton(cont, 5);
+        leftBumper.whenPressed(new Hold(leftBumperAngle));
 
-        lock180 = new JoystickButton(cont, 6);
-        lock180.whenPressed(new Hold(-180));
+        rightBumper = new JoystickButton(cont, 6);
+        rightBumper.whenPressed(new Hold(rightBumperAngle));
         
     }
 
