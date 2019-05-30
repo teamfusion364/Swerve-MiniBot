@@ -29,11 +29,32 @@ public class Robot extends TimedRobot {
 
   public void postSmartDashVars(){
     SmartDashboard.putNumber("Gyro Angle modified", gyro.getAngle());
-    SmartDashboard.putNumber("Raw Pos", drivetrain.getSwerveModule(0).getAngleMotor().getSelectedSensorPosition(0));
-    SmartDashboard.putNumber("Pos", drivetrain.getSwerveModule(0).getCurrentAngle());
-    SmartDashboard.putNumber("Closed loop error Deg", drivetrain.getSwerveModule(0).getAdjustedError());
+
+
     SmartDashboard.putNumber("Hold Offset", offset);
+    for(int i = 0; i < drivetrain.getSwerveModules().length; i++){
+      SmartDashboard.putNumber("Swerve Module " + i + " Pos", drivetrain.getSwerveModule(i).getCurrentAngle());
+      SmartDashboard.putBoolean("Swerve Module " + i +" Drive Motor Inverted", drivetrain.getSwerveModule(i).getDriveMotor().getInverted());
+      SmartDashboard.putNumber("Swerve Module " + i + " Closed loop error Deg", drivetrain.getSwerveModule(i).getAdjustedError());
+      SmartDashboard.putNumber("Swerve Module " + i + " Target Angle: ",  drivetrain.getSwerveModule(i).getTargetAngle());
+    }
+
   }
 
+  @Override
+  public void teleopInit() {
+  }
+
+  @Override
+  public void robotPeriodic() {
+  }
+
+  @Override
+  public void disabledInit() {
+  }
+
+  @Override
+  public void disabledPeriodic() {
+  }
 
 }

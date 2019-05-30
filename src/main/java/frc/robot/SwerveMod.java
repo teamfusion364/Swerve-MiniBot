@@ -69,7 +69,6 @@ public class SwerveMod extends Conversions{
         return angle;
     }
 
-
     public TalonSRX getDriveMotor() {
         return mDriveMotor;
     }
@@ -84,9 +83,7 @@ public class SwerveMod extends Conversions{
 
     public void setTargetAngle(double targetAngle) {
     
-        lastTargetAngle = targetAngle;
         targetAngle = modulate360(targetAngle);
-        SmartDashboard.putNumber("Module Target Angle " + moduleNumber, modulate360(targetAngle));
         targetAngle += mZeroOffset;
         double currentAngle = toDegrees(getPos());
         double currentAngleMod = modulate360(currentAngle);
@@ -111,8 +108,8 @@ public class SwerveMod extends Conversions{
         }
 
         targetAngle += currentAngle - currentAngleMod;
-
         double currentError = getRawError();
+        lastTargetAngle = targetAngle;
         targetAngle = toCounts(targetAngle);
         mAngleMotor.set(ControlMode.Position, targetAngle);
     }

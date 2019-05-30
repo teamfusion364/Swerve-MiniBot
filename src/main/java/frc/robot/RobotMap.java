@@ -11,9 +11,9 @@ public class RobotMap{
     public static final int gyroTalon = 1;//In actual robot this will not be the same as rTopDrive
 
     //Holds
-    public static final int aButtonAngle = 30;
-    public static final int bButtonAngle = -30;
-    public static final int xButtonAngle = 120;
+    public static final int aButtonAngle = -30;
+    public static final int bButtonAngle = -90;
+    public static final int xButtonAngle = 45;
     public static final int yButtonAngle = -120;
     public static final int leftBumperAngle = -180;
     public static final int rightBumperAngle = 0;
@@ -38,7 +38,7 @@ public class RobotMap{
 
     public static final double angleP = 20.0;
     public static final double angleI = 0.001;
-    public static final double angleD = 130;
+    public static final double angleD = 200;//130
 
     public static final int angleVelocity = 1000;
     public static final int angleAcceleration = 2400;

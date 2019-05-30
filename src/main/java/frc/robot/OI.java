@@ -11,7 +11,7 @@ public class OI{
     public Joystick cont;
 
     public Command hold;
-    public double angle = 0;
+    public double angle = 45;
     public double previousButton = 0;
     public double currentButton;
     public double temp;
