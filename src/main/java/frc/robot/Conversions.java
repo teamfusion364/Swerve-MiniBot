@@ -4,11 +4,11 @@ import static frc.robot.RobotMap.*;
 
 public class Conversions{
 
-    public double toCounts(double units){
+    public static double toCounts(double units){
         return units * encoderTicks / 360.0;
     }
 
-    public double toDegrees(double units){
+    public static double toDegrees(double units){
         return units * (360 / encoderTicks);
     }
 

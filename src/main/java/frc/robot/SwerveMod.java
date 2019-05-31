@@ -28,8 +28,10 @@ public class SwerveMod extends Conversions{
         mZeroOffset = zeroOffset;
 
         angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, slotIDX, swerveModuleTimeout);
-        angleMotor.setSelectedSensorPosition(0);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 1, swerveModuleTimeout);
+        angleMotor.setSelectedSensorPosition(0, slotIDX, swerveModuleTimeout);
         angleMotor.setSensorPhase(false);
+        angleMotor.selectProfileSlot(slotIDX, swerveModuleTimeout);
         angleMotor.config_kP(slotIDX, angleP);
         angleMotor.config_kI(slotIDX, angleI);
         angleMotor.config_kD(slotIDX, angleD);
@@ -63,7 +65,6 @@ public class SwerveMod extends Conversions{
 
     public double getCurrentAngle(){
         double angle = toDegrees(getPos());
-        angle -= mZeroOffset;
         angle = modulate360(angle);
         if (angle < 0) angle += 360;
         return angle;
@@ -82,12 +83,9 @@ public class SwerveMod extends Conversions{
     }
 
     public void setTargetAngle(double targetAngle) {
-    
         targetAngle = modulate360(targetAngle);
-        targetAngle += mZeroOffset;
         double currentAngle = toDegrees(getPos());
         double currentAngleMod = modulate360(currentAngle);
-
         if (currentAngleMod < 0) currentAngleMod += 360;
         double delta = currentAngleMod - targetAngle;
         if (delta > 180) {
@@ -95,7 +93,6 @@ public class SwerveMod extends Conversions{
         } else if (delta < -180) {
             targetAngle -= 360;
         }
-
         delta = currentAngleMod - targetAngle;
         if (delta > 90 || delta < -90) {
             if (delta > 90)
@@ -113,6 +110,12 @@ public class SwerveMod extends Conversions{
         targetAngle = toCounts(targetAngle);
         mAngleMotor.set(ControlMode.Position, targetAngle);
     }
+    public void applyOffset(){
+        double absolute = getTicks();
+        double target = mZeroOffset - absolute;
+        mAngleMotor.set(ControlMode.MotionMagic, target);
+
+    }
 
     public void setTargetSpeed(double speed) {
         if (driveInverted) speed = -speed;
@@ -128,6 +131,26 @@ public class SwerveMod extends Conversions{
     }
 
     public double getPos(){
-        return mAngleMotor.getSelectedSensorPosition(0);
+        return mAngleMotor.getSelectedSensorPosition(slotIDX);
     }
+
+    /**
+     * @return Degrees of Position
+     */
+    public double getDegrees(){
+        return toDegrees(mAngleMotor.getSensorCollection().getPulseWidthPosition() & 0xFFF);
+    }
+    /**
+     * @return Ticks of Position
+     */
+    public double getTicks(){
+        return mAngleMotor.getSensorCollection().getPulseWidthPosition() & 0xFFF;
+    }
+    public double getOffset(){
+        return mZeroOffset;
+    }
+    public void zero(){
+        mAngleMotor.setSelectedSensorPosition(0, slotIDX, swerveModuleTimeout);
+    }
+
 }

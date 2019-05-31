@@ -1,17 +1,20 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Drivetrain;
+import static frc.robot.RobotMap.*;
 
 public class Robot extends TimedRobot {
 
   public static OI oi;
-  private static Drivetrain drivetrain;
+  public static Drivetrain drivetrain;
   public static Gyro gyro;
   public static double offset;
+
 
 	public void robotInit() {
     oi = new OI();
@@ -29,14 +32,14 @@ public class Robot extends TimedRobot {
 
   public void postSmartDashVars(){
     SmartDashboard.putNumber("Gyro Angle modified", gyro.getAngle());
-
-
     SmartDashboard.putNumber("Hold Offset", offset);
+    
     for(int i = 0; i < drivetrain.getSwerveModules().length; i++){
       SmartDashboard.putNumber("Swerve Module " + i + " Pos", drivetrain.getSwerveModule(i).getCurrentAngle());
       SmartDashboard.putBoolean("Swerve Module " + i +" Drive Motor Inverted", drivetrain.getSwerveModule(i).getDriveMotor().getInverted());
       SmartDashboard.putNumber("Swerve Module " + i + " Closed loop error Deg", drivetrain.getSwerveModule(i).getAdjustedError());
       SmartDashboard.putNumber("Swerve Module " + i + " Target Angle: ",  drivetrain.getSwerveModule(i).getTargetAngle());
+      SmartDashboard.putNumber("Swerve Module " + i + " Abosolute Position: ", drivetrain.getSwerveModule(i).getDegrees());
     }
 
   }
@@ -47,6 +50,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    for(int i = 0; i < drivetrain.getSwerveModules().length; i++){
+      drivetrain.getSwerveModule(i).getAngleMotor().getSensorCollection().setPulseWidthPosition(
+          drivetrain.getSwerveModule(i).getAngleMotor().getSensorCollection().getPulseWidthPosition() & 0xFFF, swerveModuleTimeout);
+    }
+   
   }
 
   @Override
@@ -55,6 +63,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    SmartDashboard.putNumber("Swerve Module " + 0 + " Abosolute Position: ", drivetrain.getSwerveModule(0).getDegrees());
   }
 
 }

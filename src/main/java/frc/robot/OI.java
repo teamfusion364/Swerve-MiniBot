@@ -3,9 +3,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Hold;
+import frc.robot.Robot;
 
 import static frc.robot.RobotMap.*;
-
 public class OI{
 
     public Joystick cont;
@@ -40,7 +40,12 @@ public class OI{
             hold.start();
         }
         previousButton = temp;
+
+        if(cont.getPOV() == 270){
+            Robot.drivetrain.getSwerveModule(0).applyOffset();
+        }
     }
+    
 
     /**
      * @return Left Stick X Axis

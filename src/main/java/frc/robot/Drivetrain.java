@@ -1,6 +1,8 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.DrivetrainCommand;
@@ -19,22 +21,21 @@ public class Drivetrain extends Subsystem {
     private SwerveMod[] mSwerveModules;
     private int w = wheelbase;
     private int t = trackwidth;
-    
+    private Command zero;
+
     public Drivetrain() {
             mSwerveModules = new SwerveMod[] {
                     new SwerveMod(0,
                             new TalonSRX(rTopAngle),
                             new TalonSRX(rTopDrive),
-                            0),
+                            224),//224.1
             };
 
             mSwerveModules[0].setDriveInverted(true);
             // mSwerveModules[3].setDriveInverted(true);
-    
-
-        for (SwerveMod module : mSwerveModules) {
-            module.setTargetAngle(0);
-        }
+        
+            zero = new Offset(mSwerveModules);
+            zero.start();
     }  
     
 
