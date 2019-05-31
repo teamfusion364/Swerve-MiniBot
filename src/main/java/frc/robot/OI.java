@@ -40,10 +40,6 @@ public class OI{
             hold.start();
         }
         previousButton = temp;
-
-        if(cont.getPOV() == 270){
-            Robot.drivetrain.getSwerveModule(0).applyOffset();
-        }
     }
     
 

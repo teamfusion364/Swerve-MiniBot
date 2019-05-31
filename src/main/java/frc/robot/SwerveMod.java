@@ -110,12 +110,6 @@ public class SwerveMod extends Conversions{
         targetAngle = toCounts(targetAngle);
         mAngleMotor.set(ControlMode.Position, targetAngle);
     }
-    public void applyOffset(){
-        double absolute = getTicks();
-        double target = mZeroOffset - absolute;
-        mAngleMotor.set(ControlMode.MotionMagic, target);
-
-    }
 
     public void setTargetSpeed(double speed) {
         if (driveInverted) speed = -speed;
