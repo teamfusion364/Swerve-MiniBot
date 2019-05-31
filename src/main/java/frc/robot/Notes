@@ -1,3 +1,6 @@
+Problem: Hold only rotates the modules. Try adding the offset to the gyro instead.
+PID the gyro to an angle
+
 Further future:
         Offsets: Because the swerve Mods are set to zero when they are initialized, just read the position of each module After
         startup and use that as the offset after it is converted to degrees
