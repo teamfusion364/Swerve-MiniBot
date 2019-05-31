@@ -5,6 +5,7 @@ public class RobotMap{
     //hardware
     public static final int trackwidth = 19;
     public static final int wheelbase = 19;
+    public static final int wheelDiameter = 2;
     
     public static final int rTopAngle = 0;
     public static final int rTopDrive = 1;

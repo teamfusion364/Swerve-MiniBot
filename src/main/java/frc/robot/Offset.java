@@ -40,7 +40,6 @@ public class Offset extends Command{
     protected boolean isFinished() {
         int length = mod.length - 1;
         if((mod[length].getAngleMotor().getClosedLoopError(slotIDX) < 10) && isTimedOut()){
-            System.out.println("YO IM DONE");
             return true;
         }else{
             return false;

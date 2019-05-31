@@ -15,16 +15,21 @@ public class Hold extends Command{
     
     @Override
     protected void initialize() {
-        angle += offsetToStraight;
+    
     }
 
     @Override
     protected void execute() {
+        angle += offsetToStraight;
         offset = angle;
     }
 
     @Override
     protected boolean isFinished() {
         return isTimedOut();
+    }
+    @Override
+    protected void end() {
+
     }
 }

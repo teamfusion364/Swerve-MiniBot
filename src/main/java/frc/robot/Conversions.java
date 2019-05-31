@@ -15,5 +15,13 @@ public class Conversions{
     public double modulate360(double units){
         return units %= 360;
     }
+
+    /**
+     * @return encoder counts for the drive wheel to reach so that angle desired is acheived whilst
+     * in X-drive formation
+     */
+    public double degreeToCounts(double units){
+        return units / 360 * wheelbase * encoderTicks / wheelDiameter;
+    }
     
 }
