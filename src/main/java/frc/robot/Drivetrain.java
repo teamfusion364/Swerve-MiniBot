@@ -28,7 +28,7 @@ public class Drivetrain extends Subsystem {
                     new SwerveMod(0,
                             new TalonSRX(rTopAngle),
                             new TalonSRX(rTopDrive),
-                            224),//224.1
+                            module0Offset),//224.1
             };
 
             mSwerveModules[0].setDriveInverted(true);

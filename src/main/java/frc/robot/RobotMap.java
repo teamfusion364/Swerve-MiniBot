@@ -11,6 +11,12 @@ public class RobotMap{
     public static final int rTopDrive = 1;
     public static final int gyroTalon = 1;//In actual robot this will not be the same as rTopDrive
 
+    //Offsets 
+    public static final int module0offset = 227;
+    public static final int module1offset = 0;
+    public static final int module2offset = 0;
+    public static final int module3offset = 0;
+
     //Holds
     public static final int aButtonAngle = 92;
     public static final int bButtonAngle = -120;
