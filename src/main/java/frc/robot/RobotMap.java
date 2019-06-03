@@ -7,15 +7,26 @@ public class RobotMap{
     public static final int wheelbase = 19;
     public static final int wheelDiameter = 2;
     
-    public static final int rTopAngle = 0;
-    public static final int rTopDrive = 1;
+    public static final int flAngle = 2;
+    public static final int flDrive = 1;
+    public static final int frAngle = 6;
+    public static final int frDrive = 5;
+    public static final int brAngle = 8;
+    public static final int brDrive = 7;
+    public static final int blAngle = 4;
+    public static final int blDrive = 3;
+
     public static final int gyroTalon = 1;//In actual robot this will not be the same as rTopDrive
 
     //Offsets 
-    public static final int module0offset = 227;
+    /**Front Right */
+    public static final int module0offset = 0;
+    /**Front Left */
     public static final int module1offset = 0;
+    /**Back Left */
     public static final int module2offset = 0;
-    public static final int module3offset = 0;
+    /**Back Right */
+    public static final int module3offset = 86;
 
     //Holds
     public static final int aButtonAngle = 92;

@@ -26,13 +26,25 @@ public class Drivetrain extends Subsystem {
     public Drivetrain() {
             mSwerveModules = new SwerveMod[] {
                     new SwerveMod(0,
-                            new TalonSRX(rTopAngle),
-                            new TalonSRX(rTopDrive),
-                            module0Offset),//224.1
+                            new TalonSRX(frAngle),
+                            new TalonSRX(frDrive),
+                            module0offset),//224.1
+                    new SwerveMod(1,
+                            new TalonSRX(flAngle),
+                            new TalonSRX(frDrive),
+                            module1offset),
+                    new SwerveMod(2,
+                            new TalonSRX(blAngle),
+                            new TalonSRX(blDrive),
+                            module2offset),
+                    new SwerveMod(3,
+                            new TalonSRX(brAngle),
+                            new TalonSRX(brDrive),
+                            module3offset)
             };
 
             mSwerveModules[0].setDriveInverted(true);
-            // mSwerveModules[3].setDriveInverted(true);
+            mSwerveModules[3].setDriveInverted(true);
         
             zero = new Offset(mSwerveModules);
             zero.start();
