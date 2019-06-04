@@ -20,13 +20,13 @@ public class RobotMap{
 
     //Offsets 
     /**Front Right */
-    public static final int module0offset = 0;
+    public static final double module0offset = 0;
     /**Front Left */
-    public static final int module1offset = 0;
+    public static final double module1offset = 0;
     /**Back Left */
-    public static final int module2offset = 0;
+    public static final double module2offset = 0;
     /**Back Right */
-    public static final int module3offset = 86;
+    public static final double module3offset = 138.605;
 
     //Holds
     public static final int aButtonAngle = 92;
@@ -58,8 +58,8 @@ public class RobotMap{
     public static final double angleI = 0.001;
     public static final double angleD = 200;//130
 
-    public static final int angleVelocity = 1000;
-    public static final int angleAcceleration = 2400;
+    public static final int angleVelocity = 10000;
+    public static final int angleAcceleration = 10000;
 
     public static final double angleNominalForward = 0;
     public static final double angleNominalReverse = 0;
