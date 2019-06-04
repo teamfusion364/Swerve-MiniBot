@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     for(int i = 0; i < drivetrain.getSwerveModules().length; i++){
       drivetrain.getSwerveModule(i).getAngleMotor().getSensorCollection().setPulseWidthPosition(
-          drivetrain.getSwerveModule(i).getAngleMotor().getSensorCollection().getPulseWidthPosition() & 0xFFF, swerveModuleTimeout);
+          drivetrain.getSwerveModule(i).getAngleMotor().getSensorCollection().getPulseWidthPosition() & 0xFFF, SWERVETIMEOUT);
     }
    
   }

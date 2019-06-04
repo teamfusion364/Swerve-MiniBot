@@ -5,11 +5,11 @@ import static frc.robot.RobotMap.*;
 public class Conversions{
 
     public static double toCounts(double units){
-        return units * encoderTicks / 360.0;
+        return units * ENCODERTICKS / 360.0;
     }
 
     public static double toDegrees(double units){
-        return units * (360 / encoderTicks);
+        return units * (360 / ENCODERTICKS);
     }
 
     public double modulate360(double units){
@@ -21,7 +21,7 @@ public class Conversions{
      * in X-drive formation
      */
     public double degreeToCounts(double units){
-        return units / 360 * wheelbase * encoderTicks / wheelDiameter;
+        return units / 360 * WHEELBASE * ENCODERTICKS / WHEELDIAMETER;
     }
     
 }

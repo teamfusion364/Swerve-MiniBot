@@ -12,7 +12,7 @@ public class Offset extends Command{
     private double[] target;
 
     public Offset(SwerveMod[] mod){
-        setTimeout(0.2);
+        setTimeout(0.33);
         this.mod = mod;
         offset = new double[mod.length];
         target = new double[mod.length];
@@ -38,8 +38,8 @@ public class Offset extends Command{
 
     @Override
     protected boolean isFinished() {
-        int length = mod.length - 1;
-        if((mod[length].getAngleMotor().getClosedLoopError(slotIDX) < 10) && isTimedOut()){
+        int lastMod = mod.length - 1;
+        if((mod[lastMod].getAngleMotor().getClosedLoopError(SLOTIDX) < 10) && isTimedOut()){
             return true;
         }else{
             return false;
@@ -49,7 +49,7 @@ public class Offset extends Command{
     protected void end() {
         for(int i = 0; i < mod.length; i++){
             mod[i].zero();
-            mod[i].getAngleMotor().set(ControlMode.PercentOutput, 0);
+            mod[i].getAngleMotor().set(ControlMode.PercentOutput, 0);//Redudant?
         }
     }
     @Override

@@ -20,7 +20,7 @@ public class Hold extends Command{
 
     @Override
     protected void execute() {
-        angle += offsetToStraight;
+        angle += OFFSETTOSTRAIGHT;
         offset = angle;
     }
 

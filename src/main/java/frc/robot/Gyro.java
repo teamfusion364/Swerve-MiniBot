@@ -1,14 +1,12 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import static frc.robot.RobotMap.*;
 
 public class Gyro{
 
-    public static TalonSRX GyroTalon = new TalonSRX(gyroTalon);
-    public static PigeonIMU gyro = new PigeonIMU(GyroTalon);
+    public static PigeonIMU gyro = new PigeonIMU(PIGEON);
 
     public Gyro(){
         zero();

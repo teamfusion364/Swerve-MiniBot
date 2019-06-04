@@ -19,28 +19,28 @@ public class Drivetrain extends Subsystem {
 	 * 3 is Back Right
 	 */
     private SwerveMod[] mSwerveModules;
-    private int w = wheelbase;
-    private int t = trackwidth;
+    private int w = WHEELBASE;
+    private int t = TRACKWIDTH;
     private Command zero;
 
     public Drivetrain() {
             mSwerveModules = new SwerveMod[] {
                     new SwerveMod(0,
-                            new TalonSRX(frAngle),
-                            new TalonSRX(frDrive),
-                            module0offset),//224.1
+                            new TalonSRX(FRANGLE),
+                            new TalonSRX(FRDRIVE),
+                            MOD0OFFSET),//224.1
                     new SwerveMod(1,
-                            new TalonSRX(flAngle),
-                            new TalonSRX(frDrive),
-                            module1offset),
+                            new TalonSRX(FLANGLE),
+                            new TalonSRX(FRDRIVE),
+                            MOD1OFFSET),
                     new SwerveMod(2,
-                            new TalonSRX(blAngle),
-                            new TalonSRX(blDrive),
-                            module2offset),
+                            new TalonSRX(BLANGLE),
+                            new TalonSRX(BLDRIVE),
+                            MOD2OFFSET),
                     new SwerveMod(3,
-                            new TalonSRX(brAngle),
-                            new TalonSRX(brDrive),
-                            module3offset)
+                            new TalonSRX(BRANGLE),
+                            new TalonSRX(BRDRIVE),
+                            MOD3OFFSET)
             };
 
             mSwerveModules[0].setDriveInverted(true);
@@ -109,9 +109,9 @@ public class Drivetrain extends Subsystem {
         }
 
         for (int i = 0; i < mSwerveModules.length; i++) {
-            if (Math.abs(forward) > stickDeadband ||
-                    Math.abs(strafe) > stickDeadband ||
-                    Math.abs(rotation) > stickDeadband ||
+            if (Math.abs(forward) > STICKDEADBAND ||
+                    Math.abs(strafe) > STICKDEADBAND ||
+                    Math.abs(rotation) > STICKDEADBAND ||
                     Robot.oi.hold.isRunning()) {
                 mSwerveModules[i].setTargetAngle(angles[i] + offset);
             } 

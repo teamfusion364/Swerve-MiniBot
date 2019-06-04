@@ -27,36 +27,36 @@ public class SwerveMod extends Conversions{
         mDriveMotor = driveMotor;
         mZeroOffset = zeroOffset;
 
-        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, slotIDX, swerveModuleTimeout);
-        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 1, swerveModuleTimeout);
-        angleMotor.setSelectedSensorPosition(0, slotIDX, swerveModuleTimeout);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, SLOTIDX, SWERVETIMEOUT);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 1, SWERVETIMEOUT);
+        angleMotor.setSelectedSensorPosition(0, SLOTIDX, SWERVETIMEOUT);
         angleMotor.setSensorPhase(false);
-        angleMotor.selectProfileSlot(slotIDX, swerveModuleTimeout);
-        angleMotor.config_kP(slotIDX, angleP);
-        angleMotor.config_kI(slotIDX, angleI);
-        angleMotor.config_kD(slotIDX, angleD);
+        angleMotor.selectProfileSlot(SLOTIDX, SWERVETIMEOUT);
+        angleMotor.config_kP(SLOTIDX, ANGLEP);
+        angleMotor.config_kI(SLOTIDX, ANGLEI);
+        angleMotor.config_kD(SLOTIDX, ANGLED);
         angleMotor.setNeutralMode(NeutralMode.Brake);
         angleMotor.set(ControlMode.Position, 0);
-        angleMotor.configMotionCruiseVelocity(angleVelocity, swerveModuleTimeout);
-        angleMotor.configMotionAcceleration(angleAcceleration, swerveModuleTimeout);
+        angleMotor.configMotionCruiseVelocity(ANGLEVELOCITY, SWERVETIMEOUT);
+        angleMotor.configMotionAcceleration(ANGLEACCELERATION, SWERVETIMEOUT);
 
-        angleMotor.configNominalOutputForward(angleNominalForward, swerveModuleTimeout);
-        angleMotor.configNominalOutputReverse(angleNominalReverse, swerveModuleTimeout);
-        angleMotor.configPeakOutputForward(anglePeakForward, swerveModuleTimeout);
-        angleMotor.configPeakOutputReverse(anglePeakReverse, swerveModuleTimeout);
+        angleMotor.configNominalOutputForward(ANGLENOMINALFORWARD, SWERVETIMEOUT);
+        angleMotor.configNominalOutputReverse(ANGLENOMINALREVERSE, SWERVETIMEOUT);
+        angleMotor.configPeakOutputForward(ANGLEPEAKFORWARD, SWERVETIMEOUT);
+        angleMotor.configPeakOutputReverse(ANGLEPEAKREVERSE, SWERVETIMEOUT);
 
         driveMotor.setNeutralMode(NeutralMode.Brake);
 
         // Set amperage limits
-        angleMotor.configContinuousCurrentLimit(angleContinuousCurrentLimit, swerveModuleTimeout);
-        angleMotor.configPeakCurrentLimit(anglePeakCurrent, swerveModuleTimeout);
-        angleMotor.configPeakCurrentDuration(anglePeakCurrentDuration, swerveModuleTimeout);
-        angleMotor.enableCurrentLimit(angleEnableCurrentLimit);
+        angleMotor.configContinuousCurrentLimit(ANGLECONTINUOUSCURRENTLIMIT, SWERVETIMEOUT);
+        angleMotor.configPeakCurrentLimit(ANGLEPEAKCURRENT, SWERVETIMEOUT);
+        angleMotor.configPeakCurrentDuration(ANGLEPEAKCURRENTDURATION, SWERVETIMEOUT);
+        angleMotor.enableCurrentLimit(ANGLEENABLECURRENTLIMIT);
 
-        driveMotor.configContinuousCurrentLimit(driveContinuousCurrentLimit, swerveModuleTimeout);
-        driveMotor.configPeakCurrentLimit(drivePeakCurrent, swerveModuleTimeout);
-        driveMotor.configPeakCurrentDuration(drivePeakCurrentDuration, swerveModuleTimeout);
-        driveMotor.enableCurrentLimit(driveEnableCurrentLimit);
+        driveMotor.configContinuousCurrentLimit(DRIVECONTINUOUSCURRENTLIMIT, SWERVETIMEOUT);
+        driveMotor.configPeakCurrentLimit(DRIVEPEAKCURRENT, SWERVETIMEOUT);
+        driveMotor.configPeakCurrentDuration(DRIVEPEAKCURRENTDURATION, SWERVETIMEOUT);
+        driveMotor.enableCurrentLimit(DRIVEENABLECURRENTLIMIT);
     }
 
     public TalonSRX getAngleMotor(){
@@ -125,7 +125,7 @@ public class SwerveMod extends Conversions{
     }
 
     public double getPos(){
-        return mAngleMotor.getSelectedSensorPosition(slotIDX);
+        return mAngleMotor.getSelectedSensorPosition(SLOTIDX);
     }
 
     /**
@@ -144,7 +144,7 @@ public class SwerveMod extends Conversions{
         return mZeroOffset;
     }
     public void zero(){
-        mAngleMotor.setSelectedSensorPosition(0, slotIDX, swerveModuleTimeout);
+        mAngleMotor.setSelectedSensorPosition(0, SLOTIDX, SWERVETIMEOUT);
     }
 
 }

@@ -3,78 +3,78 @@ package frc.robot;
 public class RobotMap{
 
     //hardware
-    public static final int trackwidth = 19;
-    public static final int wheelbase = 19;
-    public static final int wheelDiameter = 2;
+    public static final int TRACKWIDTH = 19;
+    public static final int WHEELBASE = 19;
+    public static final int WHEELDIAMETER = 2;
     
-    public static final int flAngle = 2;
-    public static final int flDrive = 1;
-    public static final int frAngle = 6;
-    public static final int frDrive = 5;
-    public static final int brAngle = 8;
-    public static final int brDrive = 7;
-    public static final int blAngle = 4;
-    public static final int blDrive = 3;
+    public static final int FLANGLE = 2;
+    public static final int FLDRIVE = 1;
+    public static final int FRANGLE = 6;
+    public static final int FRDRIVE = 5;
+    public static final int BRANGLE = 8;
+    public static final int BRDRIVE = 7;
+    public static final int BLANGLE = 4;
+    public static final int BLDRIVE = 3;
 
-    public static final int gyroTalon = 1;//In actual robot this will not be the same as rTopDrive
+    public static final int PIGEON = 3;
 
     //Offsets 
     /**Front Right */
-    public static final double module0offset = 0;
+    public static final double MOD0OFFSET = 0;
     /**Front Left */
-    public static final double module1offset = 0;
+    public static final double MOD1OFFSET = 0;
     /**Back Left */
-    public static final double module2offset = 0;
+    public static final double MOD2OFFSET = 0;
     /**Back Right */
-    public static final double module3offset = 138.605;
+    public static final double MOD3OFFSET = 138.605;
 
     //Holds
-    public static final int aButtonAngle = 92;
-    public static final int bButtonAngle = -120;
-    public static final int xButtonAngle = 45;
-    public static final int yButtonAngle = 60;
-    public static final int leftBumperAngle = -180;
-    public static final int rightBumperAngle = 0;
+    public static final int ABUTTONANGLE = 92;
+    public static final int BBUTTONANGLE = -120;
+    public static final int XBUTTONANGLE = 45;
+    public static final int YBUTTONANGLE = 60;
+    public static final int LEFTBUMPERANGLE = -180;
+    public static final int RIGHTBUMPERANGLE = 0;
     
     public static double[] angles = {
         0,
-        aButtonAngle,
-        bButtonAngle,
-        xButtonAngle,
-        yButtonAngle,
-        leftBumperAngle,
-        rightBumperAngle};
+        ABUTTONANGLE,
+        BBUTTONANGLE,
+        XBUTTONANGLE,
+        YBUTTONANGLE,
+        LEFTBUMPERANGLE,
+        RIGHTBUMPERANGLE};
 
     //constants
-    public static final double stickDeadband = 0.05;
-    public static final double encoderTicks = 4096.0;
-    public static final double offsetToStraight = 180;
+    public static final double STICKDEADBAND = 0.05;
+    public static final double ENCODERTICKS = 4096.0;
+    public static final double OFFSETTOSTRAIGHT = 180;
 
 
-    public static final int slotIDX = 0;
-    public static final int swerveModuleTimeout = 0;
+    public static final int SLOTIDX = 0;
+    public static final int SWERVETIMEOUT = 0;
 
-    public static final double angleP = 20.0;
-    public static final double angleI = 0.001;
-    public static final double angleD = 200;//130
+    public static final double ANGLEP = 20.0;
+    public static final double ANGLEI = 0.001;
+    public static final double ANGLED = 200;//130
 
-    public static final int angleVelocity = 10000;
-    public static final int angleAcceleration = 10000;
+    public static final int ANGLEVELOCITY = 10000;
+    public static final int ANGLEACCELERATION = 10000;
 
-    public static final double angleNominalForward = 0;
-    public static final double angleNominalReverse = 0;
-    public static final double anglePeakForward = 1;
-    public static final double anglePeakReverse = -1;
+    public static final double ANGLENOMINALFORWARD = 0;
+    public static final double ANGLENOMINALREVERSE = 0;
+    public static final double ANGLEPEAKFORWARD = 1;
+    public static final double ANGLEPEAKREVERSE = -1;
 
-    public static final int angleContinuousCurrentLimit = 30;
-    public static final int anglePeakCurrent = 30;
-    public static final int anglePeakCurrentDuration = 100;
-    public static final boolean angleEnableCurrentLimit = true;
+    public static final int ANGLECONTINUOUSCURRENTLIMIT = 30;
+    public static final int ANGLEPEAKCURRENT = 30;
+    public static final int ANGLEPEAKCURRENTDURATION = 100;
+    public static final boolean ANGLEENABLECURRENTLIMIT = true;
 
-    public static final int driveContinuousCurrentLimit = 25;
-    public static final int drivePeakCurrent = 25;
-    public static final int drivePeakCurrentDuration = 100;
-    public static final boolean driveEnableCurrentLimit = true;
+    public static final int DRIVECONTINUOUSCURRENTLIMIT = 25;
+    public static final int DRIVEPEAKCURRENT = 25;
+    public static final int DRIVEPEAKCURRENTDURATION = 100;
+    public static final boolean DRIVEENABLECURRENTLIMIT = true;
 
 
 }

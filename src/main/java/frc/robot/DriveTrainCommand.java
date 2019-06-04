@@ -38,7 +38,7 @@ public class DrivetrainCommand extends Command {
 	}
 
 	private double deadband(double input) {
-		if (Math.abs(input) < stickDeadband) return 0;
+		if (Math.abs(input) < STICKDEADBAND) return 0;
 		return input;
 	}
 
