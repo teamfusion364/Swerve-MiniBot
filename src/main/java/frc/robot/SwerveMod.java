@@ -58,6 +58,14 @@ public class SwerveMod extends Conversions{
         driveMotor.configPeakCurrentLimit(DRIVEPEAKCURRENT, SWERVETIMEOUT);
         driveMotor.configPeakCurrentDuration(DRIVEPEAKCURRENTDURATION, SWERVETIMEOUT);
         driveMotor.enableCurrentLimit(DRIVEENABLECURRENTLIMIT);
+
+        driveMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, SLOTIDX, SWERVETIMEOUT);
+        driveMotor.setSelectedSensorPosition(0, SLOTIDX, SWERVETIMEOUT);
+        driveMotor.setSensorPhase(false);
+        driveMotor.selectProfileSlot(SLOTIDX, SWERVETIMEOUT);
+        driveMotor.config_kP(SLOTIDX, ANGLEP);
+        driveMotor.config_kI(SLOTIDX, ANGLEI);
+        driveMotor.config_kD(SLOTIDX, ANGLED);
     }
 
     public TalonSRX getAngleMotor(){
@@ -75,6 +83,10 @@ public class SwerveMod extends Conversions{
         return mDriveMotor;
     }
 
+    public double getDrivePos(){
+        return mDriveMotor.getSelectedSensorPosition(SLOTIDX);
+    }
+    
     public double getTargetAngle() {
         return lastTargetAngle;
     }

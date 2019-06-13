@@ -42,6 +42,8 @@ public class Robot extends TimedRobot {
       SmartDashboard.putNumber("Swerve Module " + i + " Closed loop error Deg", drivetrain.getSwerveModule(i).getAdjustedError());
       SmartDashboard.putNumber("Swerve Module " + i + " Target Angle: ",  drivetrain.getSwerveModule(i).getTargetAngle());
       SmartDashboard.putNumber("Swerve Module " + i + " Abosolute Position: ", drivetrain.getSwerveModule(i).getDegrees());
+      SmartDashboard.putNumber("Swerve Module " + i + " Drive Position: ", drivetrain.getSwerveModule(3).getDrivePos());
+      SmartDashboard.putNumber("Inches ", (drivetrain.getSwerveModule(3).getDrivePos() / 4096) * (2 * Math.PI) / 4.89);
     }
 
   }
