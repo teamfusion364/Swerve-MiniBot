@@ -12,7 +12,7 @@ public class Offset extends Command{
     private double[] target;
 
     public Offset(SwerveMod[] mod){
-        setTimeout(0.33);
+        setTimeout(1);
         this.mod = mod;
         offset = new double[mod.length];
         target = new double[mod.length];

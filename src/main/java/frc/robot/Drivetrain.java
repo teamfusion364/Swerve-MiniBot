@@ -28,10 +28,10 @@ public class Drivetrain extends Subsystem {
                     new SwerveMod(0,
                             new TalonSRX(FRANGLE),
                             new TalonSRX(FRDRIVE),
-                            MOD0OFFSET),//224.1
+                            MOD0OFFSET),
                     new SwerveMod(1,
                             new TalonSRX(FLANGLE),
-                            new TalonSRX(FRDRIVE),
+                            new TalonSRX(FLDRIVE),
                             MOD1OFFSET),
                     new SwerveMod(2,
                             new TalonSRX(BLANGLE),
@@ -44,8 +44,10 @@ public class Drivetrain extends Subsystem {
             };
 
             mSwerveModules[0].setDriveInverted(true);
+            mSwerveModules[2].setDriveInverted(true);
             mSwerveModules[3].setDriveInverted(true);
-        
+            //mSwerveModules[2].setSensorPhase(true);
+
             zero = new Offset(mSwerveModules);
             zero.start();
     }  
@@ -65,7 +67,7 @@ public class Drivetrain extends Subsystem {
         return new double[]{
                 Math.atan2(b, c) * 180 / Math.PI,
                 Math.atan2(b, d) * 180 / Math.PI,
-                Math.atan2(a, d) * 180 / Math.PI,
+                Math.atan2(a, d) * 180 / Math.PI,//ad
                 Math.atan2(a, c) * 180 / Math.PI
         };
     }
@@ -108,7 +110,7 @@ public class Drivetrain extends Subsystem {
             }
         }
 
-        for (int i = 0; i < mSwerveModules.length; i++) {
+        for (int i = 0; i < 4; i++) {
             if (Math.abs(forward) > STICKDEADBAND ||
                     Math.abs(strafe) > STICKDEADBAND ||
                     Math.abs(rotation) > STICKDEADBAND ||

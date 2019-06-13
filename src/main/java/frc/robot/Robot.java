@@ -8,6 +8,8 @@ import frc.robot.OI;
 import frc.robot.Drivetrain;
 import static frc.robot.RobotMap.*;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 public class Robot extends TimedRobot {
 
   public static OI oi;
@@ -64,6 +66,7 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     SmartDashboard.putNumber("Swerve Module " + 0 + " Abosolute Position: ", drivetrain.getSwerveModule(0).getDegrees());
+    postSmartDashVars();
   }
 
 }

@@ -19,7 +19,7 @@ public class Gyro{
     double angle = getFusedHeading();
     angle %= 360;
     if (angle < 0) angle += 360;
-        return angle;
+        return 360 - angle;
     
     }
 
