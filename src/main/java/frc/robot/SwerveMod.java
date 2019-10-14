@@ -28,8 +28,8 @@ public class SwerveMod extends Conversions{
         mZeroOffset = zeroOffset;
 
         angleMotor.configFactoryDefault();
-        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, SLOTIDX, SWERVETIMEOUT);
-        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 1, SWERVETIMEOUT);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, SLOTIDX, SWERVETIMEOUT);
+        angleMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 1, SWERVETIMEOUT);
         angleMotor.setSelectedSensorPosition(0, SLOTIDX, SWERVETIMEOUT);
         angleMotor.setSensorPhase(false);
         angleMotor.selectProfileSlot(SLOTIDX, SWERVETIMEOUT);
